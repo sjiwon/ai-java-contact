@@ -1,4 +1,4 @@
-package com.sjiwon.contact.contact.domain;
+package com.sjiwon.contact.consoledb.infrastructure.persistence;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "contact")
-public class Contact {
+public class ContactJpaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,9 +28,14 @@ public class Contact {
     @Column(name = "phone", nullable = false)
     private String phone;
 
-    public Contact(final String name, final int age, final String phone) {
+    public ContactJpaEntity(final Long id, final String name, final int age, final String phone) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.phone = phone;
+    }
+
+    public ContactJpaEntity(final String name, final int age, final String phone) {
+        this(null, name, age, phone);
     }
 }

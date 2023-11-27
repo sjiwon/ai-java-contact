@@ -3,9 +3,8 @@ package com.sjiwon.contact.common;
 import java.util.regex.Pattern;
 
 public interface Constants {
-    String PROJECT_PATH = System.getProperty("user.dir") + "\\src\\main\\java\\com\\sjiwon\\contact\\file";
-    String FILE_PATH = PROJECT_PATH + "\\store\\phone.txt";
-    String DELIMITER = " ";
+    String PROJECT_PATH = System.getProperty("user.dir") + "\\src\\main\\java\\com\\sjiwon\\contact";
+    String FILE_PATH = PROJECT_PATH + "\\consolefile\\store\\phone.txt";
 
     /**
      * xxx-xxx-xxxx or xxx-xxxx-xxxx

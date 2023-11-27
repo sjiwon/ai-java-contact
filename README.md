@@ -2,4 +2,4 @@
 
 1. 콘솔
 2. 콘솔 + RDB
-3. Web Application
+3. ~~Web Application~~ (Deprecated)

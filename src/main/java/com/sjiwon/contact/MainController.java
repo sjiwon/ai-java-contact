@@ -1,6 +1,6 @@
 package com.sjiwon.contact;
 
-import com.sjiwon.contact.consoledb.ContactProcessor;
+import com.sjiwon.contact.consoledb.application.ContactProcessor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
