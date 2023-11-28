@@ -1,4 +1,4 @@
-package com.sjiwon.contact;
+package com.sjiwon.contact.consoledb.controller;
 
 import com.sjiwon.contact.consoledb.application.ContactConsoleProcessor;
 import lombok.RequiredArgsConstructor;
