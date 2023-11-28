@@ -23,7 +23,7 @@ public class ContactMainFrame extends AbstractFrame {
     protected void setFrameUp() {
         setLayout(new GridLayout(1, 5, 30, 0));
         setSize(1280, 500);
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         defaultSetUp();
     }
 
