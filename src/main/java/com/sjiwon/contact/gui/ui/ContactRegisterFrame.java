@@ -54,6 +54,12 @@ public class ContactRegisterFrame extends AbstractFrame {
         add(processButton);
     }
 
+    public void clear() {
+        nameText.setText("");
+        ageText.setText("");
+        phoneText.setText("");
+    }
+
     public String getName() {
         final String text = nameText.getText();
         return text.isBlank() ? null : text;

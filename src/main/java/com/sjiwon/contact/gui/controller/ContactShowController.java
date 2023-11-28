@@ -2,7 +2,7 @@ package com.sjiwon.contact.gui.controller;
 
 import com.sjiwon.contact.common.AbstractFrameController;
 import com.sjiwon.contact.common.Constants;
-import com.sjiwon.contact.consoledb.application.ContactGuiActiveProcessor;
+import com.sjiwon.contact.consoledb.application.ContactGuiRdbInteractProcessor;
 import com.sjiwon.contact.domain.Contact;
 import com.sjiwon.contact.gui.ui.ContactShowFrame;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class ContactShowController extends AbstractFrameController {
     private static final String[] TABLE_COLUMN = new String[]{"이름", "나이", "연락처", "등록 날짜"};
 
     private final ContactShowFrame contactShowFrame;
-    private final ContactGuiActiveProcessor contactGuiActiveProcessor;
+    private final ContactGuiRdbInteractProcessor contactGuiRdbInteractProcessor;
 
     @Override
     public void setUpAndOpen() {
@@ -45,7 +45,7 @@ public class ContactShowController extends AbstractFrameController {
     }
 
     private String[][] getContactArray() {
-        final List<Contact> contactRecords = contactGuiActiveProcessor.findAll();
+        final List<Contact> contactRecords = contactGuiRdbInteractProcessor.findAll();
         final String[][] contactArray = new String[contactRecords.size()][4];
 
         for (int i = 0; i < contactRecords.size(); i++) {

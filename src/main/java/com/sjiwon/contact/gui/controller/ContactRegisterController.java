@@ -1,8 +1,8 @@
 package com.sjiwon.contact.gui.controller;
 
 import com.sjiwon.contact.common.AbstractFrameController;
-import com.sjiwon.contact.consoledb.application.ContactGuiActiveProcessor;
-import com.sjiwon.contact.consoledb.application.ContactGuiConsoleProcessor;
+import com.sjiwon.contact.consoledb.application.ContactGuiFileInteractProcessor;
+import com.sjiwon.contact.consoledb.application.ContactGuiRdbInteractProcessor;
 import com.sjiwon.contact.domain.Contact;
 import com.sjiwon.contact.gui.ui.ContactRegisterFrame;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +18,8 @@ import static com.sjiwon.contact.common.Constants.PHONE_PATTERN;
 @RequiredArgsConstructor
 public class ContactRegisterController extends AbstractFrameController {
     private final ContactRegisterFrame contactRegisterFrame;
-    private final ContactGuiActiveProcessor contactGuiActiveProcessor;
-    private final ContactGuiConsoleProcessor contactGuiConsoleProcessor;
+    private final ContactGuiRdbInteractProcessor contactGuiRdbInteractProcessor;
+    private final ContactGuiFileInteractProcessor contactGuiFileInteractProcessor;
 
     @Override
     public void setUpAndOpen() {
@@ -77,14 +77,16 @@ public class ContactRegisterController extends AbstractFrameController {
                 return;
             }
 
-            contactGuiConsoleProcessor.create(name, Integer.parseInt(age), phone);
-            contactGuiActiveProcessor.create(name, Integer.parseInt(age), phone);
+            contactGuiFileInteractProcessor.create(name, Integer.parseInt(age), phone);
+            contactGuiRdbInteractProcessor.create(name, Integer.parseInt(age), phone);
             JOptionPane.showMessageDialog(
                     null,
                     "연락처가 등록되었습니다.",
                     "연락처 등록",
                     JOptionPane.INFORMATION_MESSAGE
             );
+
+            contactRegisterFrame.clear();
             contactRegisterFrame.setVisible(false);
         } catch (final NumberFormatException e) {
             JOptionPane.showMessageDialog(
@@ -132,7 +134,7 @@ public class ContactRegisterController extends AbstractFrameController {
     }
 
     private boolean isPhoneExists(final String value) {
-        final List<String> filterWithName = contactGuiActiveProcessor.findAll()
+        final List<String> filterWithName = contactGuiRdbInteractProcessor.findAll()
                 .stream()
                 .map(Contact::phone)
                 .toList();

@@ -2,8 +2,8 @@ package com.sjiwon.contact.gui.controller;
 
 import com.sjiwon.contact.common.AbstractFrameController;
 import com.sjiwon.contact.common.Constants;
-import com.sjiwon.contact.consoledb.application.ContactGuiActiveProcessor;
-import com.sjiwon.contact.consoledb.application.ContactGuiConsoleProcessor;
+import com.sjiwon.contact.consoledb.application.ContactGuiFileInteractProcessor;
+import com.sjiwon.contact.consoledb.application.ContactGuiRdbInteractProcessor;
 import com.sjiwon.contact.domain.Contact;
 import com.sjiwon.contact.gui.ui.ContactDeleteFrame;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +25,8 @@ public class ContactDeleteController extends AbstractFrameController {
     private static final String[] TABLE_COLUMN = new String[]{"ID", "이름", "나이", "연락처", "등록 날짜", "삭제"};
 
     private final ContactDeleteFrame contactDeleteFrame;
-    private final ContactGuiActiveProcessor contactGuiActiveProcessor;
-    private final ContactGuiConsoleProcessor contactGuiConsoleProcessor;
+    private final ContactGuiRdbInteractProcessor contactGuiRdbInteractProcessor;
+    private final ContactGuiFileInteractProcessor contactGuiFileInteractProcessor;
 
     @Override
     public void setUpAndOpen() {
@@ -58,7 +58,7 @@ public class ContactDeleteController extends AbstractFrameController {
     }
 
     private String[][] getMovieArray() {
-        final List<Contact> contactRecords = contactGuiActiveProcessor.findAll();
+        final List<Contact> contactRecords = contactGuiRdbInteractProcessor.findAll();
         final String[][] contactArray = new String[contactRecords.size()][6];
 
         for (int i = 0; i < contactRecords.size(); i++) {
@@ -81,8 +81,8 @@ public class ContactDeleteController extends AbstractFrameController {
         public PhoneDeleteCell() {
             deleteButton = new JButton("삭제하기");
             deleteButton.addActionListener(e -> {
-                contactGuiConsoleProcessor.delete(contactId);
-                contactGuiActiveProcessor.delete(contactId);
+                contactGuiFileInteractProcessor.delete(contactId);
+                contactGuiRdbInteractProcessor.delete(contactId);
                 JOptionPane.showMessageDialog(
                         null,
                         String.format("[%s] 연락처가 삭제되었습니다.", contactPhone),

@@ -19,7 +19,7 @@ import static com.sjiwon.contact.common.Constants.FILE_PATH;
 
 @Component
 @RequiredArgsConstructor
-public class ContactGuiConsoleProcessor {
+public class ContactGuiFileInteractProcessor {
     private final ContactReader contactReader;
 
     public List<Contact> findAll() {

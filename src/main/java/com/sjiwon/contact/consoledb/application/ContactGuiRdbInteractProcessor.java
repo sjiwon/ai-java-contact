@@ -9,7 +9,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class ContactGuiActiveProcessor {
+public class ContactGuiRdbInteractProcessor {
     private final ContactReader contactReader;
     private final ContactWriter contactWriter;
 

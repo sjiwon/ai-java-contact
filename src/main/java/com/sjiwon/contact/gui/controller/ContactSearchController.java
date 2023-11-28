@@ -2,7 +2,7 @@ package com.sjiwon.contact.gui.controller;
 
 import com.sjiwon.contact.common.AbstractFrameController;
 import com.sjiwon.contact.common.Constants;
-import com.sjiwon.contact.consoledb.application.ContactGuiActiveProcessor;
+import com.sjiwon.contact.consoledb.application.ContactGuiRdbInteractProcessor;
 import com.sjiwon.contact.domain.Contact;
 import com.sjiwon.contact.gui.ui.ContactSearchPreFrame;
 import com.sjiwon.contact.gui.ui.ContactSearchResultFrame;
@@ -22,7 +22,7 @@ public class ContactSearchController extends AbstractFrameController {
 
     private final ContactSearchPreFrame contactSearchPreFrame;
     private final ContactSearchResultFrame contactSearchResultFrame;
-    private final ContactGuiActiveProcessor contactGuiActiveProcessor;
+    private final ContactGuiRdbInteractProcessor contactGuiRdbInteractProcessor;
 
     @Override
     public void setUpAndOpen() {
@@ -32,6 +32,7 @@ public class ContactSearchController extends AbstractFrameController {
 
     private void process() {
         if (init()) {
+            contactSearchPreFrame.clear();
             contactSearchPreFrame.setVisible(false);
             contactSearchResultFrame.setVisible(true);
         }
@@ -108,9 +109,9 @@ public class ContactSearchController extends AbstractFrameController {
 
     private List<Contact> getRecords(final Type type, final String value) {
         if (type == Type.MEDIUM) {
-            return contactGuiActiveProcessor.findByMedium(value);
+            return contactGuiRdbInteractProcessor.findByMedium(value);
         }
-        return contactGuiActiveProcessor.findByLast(value);
+        return contactGuiRdbInteractProcessor.findByLast(value);
     }
 
     private enum Type {
