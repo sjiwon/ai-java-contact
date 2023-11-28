@@ -1,15 +1,15 @@
 package com.sjiwon.contact;
 
-import com.sjiwon.contact.consoledb.application.ContactProcessor;
+import com.sjiwon.contact.consoledb.application.ContactConsoleProcessor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
 @Controller
 @RequiredArgsConstructor
 public class MainController {
-    private final ContactProcessor contactProcessor;
+    private final ContactConsoleProcessor contactConsoleProcessor;
 
     public void run() {
-        contactProcessor.invoke();
+        contactConsoleProcessor.invoke();
     }
 }

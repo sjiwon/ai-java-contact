@@ -15,10 +15,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.sjiwon.contact.common.Constants.DATE_FORMAT;
 import static com.sjiwon.contact.common.Constants.FILE_PATH;
 import static com.sjiwon.contact.common.Constants.NAME_PATTERN;
 import static com.sjiwon.contact.common.Constants.PHONE_PATTERN;
@@ -72,7 +74,8 @@ public class FileContact {
                 list.add(new Contact(
                         token[0],
                         Integer.parseInt(token[1]),
-                        token[2]
+                        token[2],
+                        LocalDateTime.now()
                 ));
             }
         } catch (final IOException e) {
@@ -94,11 +97,12 @@ public class FileContact {
         for (int i = 0; i < contacts.size(); i++) {
             final Contact contact = contacts.get(i);
             result.append(String.format(
-                    "%d:\t%s\t%d\t%s\n",
+                    "%d:\t%s\t%d\t%s\t%s\n",
                     (i + 1),
                     contact.name(),
                     contact.age(),
-                    contact.phone()
+                    contact.phone(),
+                    contact.createdAt().format(DATE_FORMAT)
             ));
         }
 
@@ -121,7 +125,7 @@ public class FileContact {
             return;
         }
 
-        final Contact contact = new Contact(name, Integer.parseInt(age), phone);
+        final Contact contact = new Contact(name, Integer.parseInt(age), phone, LocalDateTime.now());
         register(contact);
 
         printNewLine();
@@ -293,6 +297,7 @@ public class FileContact {
                 }
 
                 final int row = Integer.parseInt(sc.nextLine());
+                System.out.println(row);
                 if (row == 0) {
                     throw new InvalidDeleteOperationException("행은 1부터 입력해주세요.");
                 }

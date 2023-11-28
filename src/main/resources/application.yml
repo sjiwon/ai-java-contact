@@ -8,9 +8,9 @@ spring:
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: validate
     properties:
       hibernate:
-        show_sql: false
+        show_sql: true
         format_sql: false
         default_batch_fetch_size: 50

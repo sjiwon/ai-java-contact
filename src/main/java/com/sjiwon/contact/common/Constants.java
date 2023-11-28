@@ -1,5 +1,6 @@
 package com.sjiwon.contact.common;
 
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
 public interface Constants {
@@ -11,4 +12,7 @@ public interface Constants {
      */
     Pattern PHONE_PATTERN = Pattern.compile("^\\d{3}-\\d{3,4}-\\d{4}$");
     Pattern NAME_PATTERN = Pattern.compile("^[가-힣a-zA-Z]*$");
+
+    // DateTimeFormatter
+    DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분");
 }

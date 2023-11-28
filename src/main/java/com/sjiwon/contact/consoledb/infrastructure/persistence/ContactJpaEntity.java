@@ -10,10 +10,12 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "contact")
+@Table(name = "contacts")
 public class ContactJpaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,14 +30,17 @@ public class ContactJpaEntity {
     @Column(name = "phone", nullable = false)
     private String phone;
 
-    public ContactJpaEntity(final Long id, final String name, final int age, final String phone) {
+    private LocalDateTime createdAt;
+
+    public ContactJpaEntity(final Long id, final String name, final int age, final String phone, final LocalDateTime createdAt) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.phone = phone;
+        this.createdAt = createdAt;
     }
 
-    public ContactJpaEntity(final String name, final int age, final String phone) {
-        this(null, name, age, phone);
+    public ContactJpaEntity(final String name, final int age, final String phone, final LocalDateTime createdAt) {
+        this(null, name, age, phone, createdAt);
     }
 }

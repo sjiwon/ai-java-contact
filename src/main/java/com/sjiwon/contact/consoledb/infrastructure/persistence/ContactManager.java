@@ -20,6 +20,12 @@ public class ContactManager implements ContactWriter, ContactReader {
     }
 
     @Override
+    public Contact get(final Long id) {
+        final ContactJpaEntity entity = contactJpaRepository.findById(id).orElseThrow();
+        return ContactMapper.toDomain(entity);
+    }
+
+    @Override
     public void delete(final Contact target) {
         contactJpaRepository.delete(ContactMapper.toEntity(target));
     }
@@ -29,6 +35,24 @@ public class ContactManager implements ContactWriter, ContactReader {
         return contactJpaRepository.findAll()
                 .stream()
                 .map(ContactMapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<Contact> findByMedium(final String value) {
+        return contactJpaRepository.findAll()
+                .stream()
+                .map(ContactMapper::toDomain)
+                .filter(contact -> contact.getMediumPartOfPhone().contains(value))
+                .toList();
+    }
+
+    @Override
+    public List<Contact> findByLast(final String value) {
+        return contactJpaRepository.findAll()
+                .stream()
+                .map(ContactMapper::toDomain)
+                .filter(contact -> contact.getLastPartOfPhone().contains(value))
                 .toList();
     }
 

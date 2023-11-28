@@ -8,7 +8,8 @@ public class ContactMapper {
                 entity.getId(),
                 entity.getName(),
                 entity.getAge(),
-                entity.getPhone()
+                entity.getPhone(),
+                entity.getCreatedAt()
         );
     }
 
@@ -17,7 +18,8 @@ public class ContactMapper {
                 contact.id(),
                 contact.name(),
                 contact.age(),
-                contact.phone()
+                contact.phone(),
+                contact.createdAt()
         );
     }
 }

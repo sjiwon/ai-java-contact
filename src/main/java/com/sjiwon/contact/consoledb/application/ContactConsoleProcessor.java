@@ -10,15 +10,17 @@ import com.sjiwon.contact.domain.Contact;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.sjiwon.contact.common.Constants.DATE_FORMAT;
 import static com.sjiwon.contact.common.Constants.NAME_PATTERN;
 import static com.sjiwon.contact.common.Constants.PHONE_PATTERN;
 
 @Component
 @RequiredArgsConstructor
-public class ContactProcessor {
+public class ContactConsoleProcessor {
     private static final Scanner sc = new Scanner(System.in);
 
     private final ContactWriter contactWriter;
@@ -71,11 +73,12 @@ public class ContactProcessor {
         for (int i = 0; i < contacts.size(); i++) {
             final Contact contact = contacts.get(i);
             result.append(String.format(
-                    "%d:\t%s\t%d\t%s\n",
+                    "%d:\t%s\t%d\t%s\t%s\n",
                     (i + 1),
                     contact.name(),
                     contact.age(),
-                    contact.phone()
+                    contact.phone(),
+                    contact.createdAt().format(DATE_FORMAT)
             ));
         }
 
@@ -98,7 +101,7 @@ public class ContactProcessor {
             return;
         }
 
-        final Contact contact = new Contact(name, Integer.parseInt(age), phone);
+        final Contact contact = new Contact(name, Integer.parseInt(age), phone, LocalDateTime.now());
         register(contact);
 
         System.out.println();
