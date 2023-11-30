@@ -4,7 +4,6 @@ import com.sjiwon.contact.domain.Contact;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
@@ -25,8 +24,8 @@ public class ContactGuiRdbInteractProcessor {
         return contactReader.findByLast(value);
     }
 
-    public void create(final String name, final int age, final String phone) {
-        contactWriter.create(new Contact(name, age, phone, LocalDateTime.now()));
+    public Long create(final String name, final int age, final String phone) {
+        return contactWriter.create(new Contact(name, age, phone)).id();
     }
 
     public void delete(final Long id) {

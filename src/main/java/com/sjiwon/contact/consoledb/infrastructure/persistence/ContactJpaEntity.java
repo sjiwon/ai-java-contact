@@ -39,8 +39,4 @@ public class ContactJpaEntity {
         this.phone = phone;
         this.createdAt = createdAt;
     }
-
-    public ContactJpaEntity(final String name, final int age, final String phone, final LocalDateTime createdAt) {
-        this(null, name, age, phone, createdAt);
-    }
 }

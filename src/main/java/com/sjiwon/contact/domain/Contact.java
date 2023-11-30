@@ -12,13 +12,15 @@ public record Contact(
     private static final String PHONE_DELIMITER = "-";
     public static final String FORM_DELIMITER = " ";
 
-    public Contact(
-            final String name,
-            final int age,
-            final String phone,
-            final LocalDateTime createdAt
-    ) {
-        this(null, name, age, phone, createdAt);
+    /**
+     * RDB Persist (with IDENTITY Strategy)
+     */
+    public Contact(final String name, final int age, final String phone) {
+        this(null, name, age, phone, LocalDateTime.now());
+    }
+
+    public Contact(final Long id, final String name, final int age, final String phone) {
+        this(id, name, age, phone, LocalDateTime.now());
     }
 
     public String getMediumPartOfPhone() {
@@ -30,6 +32,6 @@ public record Contact(
     }
 
     public String toForm() {
-        return name + FORM_DELIMITER + age + FORM_DELIMITER + phone + FORM_DELIMITER + createdAt;
+        return id + FORM_DELIMITER + name + FORM_DELIMITER + age + FORM_DELIMITER + phone + FORM_DELIMITER + createdAt;
     }
 }

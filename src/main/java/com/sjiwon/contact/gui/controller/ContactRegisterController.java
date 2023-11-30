@@ -77,8 +77,8 @@ public class ContactRegisterController extends AbstractFrameController {
                 return;
             }
 
-            contactGuiFileInteractProcessor.create(name, Integer.parseInt(age), phone);
-            contactGuiRdbInteractProcessor.create(name, Integer.parseInt(age), phone);
+            final Long contactId = contactGuiRdbInteractProcessor.create(name, Integer.parseInt(age), phone);
+            contactGuiFileInteractProcessor.create(contactId, name, Integer.parseInt(age), phone);
             JOptionPane.showMessageDialog(
                     null,
                     "연락처가 등록되었습니다.",

@@ -1,5 +1,6 @@
 package com.sjiwon.contact.consolefile;
 
+import com.sjiwon.contact.consolefile.application.FileInteractor;
 import com.sjiwon.contact.consolefile.exception.DuplicateResourceException;
 import com.sjiwon.contact.consolefile.exception.InvalidAgeException;
 import com.sjiwon.contact.consolefile.exception.InvalidDeleteOperationException;
@@ -8,26 +9,19 @@ import com.sjiwon.contact.consolefile.exception.InvalidNameException;
 import com.sjiwon.contact.consolefile.exception.InvalidPhoneException;
 import com.sjiwon.contact.domain.Contact;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import static com.sjiwon.contact.common.Constants.DATE_FORMAT;
-import static com.sjiwon.contact.common.Constants.FILE_PATH;
 import static com.sjiwon.contact.common.Constants.NAME_PATTERN;
 import static com.sjiwon.contact.common.Constants.PHONE_PATTERN;
 
 public class FileContact {
     private static final Scanner sc = new Scanner(System.in);
-    private final List<Contact> list = new ArrayList<>();
+    private final FileInteractor fileInteractor = new FileInteractor();
+    private List<Contact> list = new ArrayList<>();
 
     private void run() {
         init();
@@ -64,23 +58,7 @@ public class FileContact {
     }
 
     private void init() {
-        list.clear();
-
-        try (final BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(FILE_PATH)))) {
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                final String[] token = line.split(Contact.FORM_DELIMITER);
-                list.add(new Contact(
-                        token[0],
-                        Integer.parseInt(token[1]),
-                        token[2],
-                        LocalDateTime.now()
-                ));
-            }
-        } catch (final IOException e) {
-            throw new RuntimeException(e);
-        }
+        list = fileInteractor.read();
     }
 
     private void show() {
@@ -125,7 +103,13 @@ public class FileContact {
             return;
         }
 
-        final Contact contact = new Contact(name, Integer.parseInt(age), phone, LocalDateTime.now());
+        final Contact contact = new Contact(
+                fileInteractor.getLastId() + 1,
+                name,
+                Integer.parseInt(age),
+                phone,
+                LocalDateTime.now()
+        );
         register(contact);
 
         printNewLine();
@@ -223,15 +207,8 @@ public class FileContact {
     }
 
     private void register(final Contact contact) {
-        try (final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FILE_PATH, true)))) {
-            final String text = contact.toForm();
-            bw.write(text + "\n");
-            bw.flush();
-
-            init();
-        } catch (final IOException e) {
-            throw new RuntimeException(e);
-        }
+        fileInteractor.writeWithKeepAdd(contact);
+        init();
     }
 
     private void search() {
@@ -306,7 +283,7 @@ public class FileContact {
                 }
 
                 list.remove(row - 1);
-                reboot();
+                fileInteractor.writeWithInit(list);
 
                 System.out.printf("%d 행이 삭제되었습니다.\n\n", row);
                 break;
@@ -315,18 +292,6 @@ public class FileContact {
             } catch (final NumberFormatException e) {
                 System.out.println("숫자를 입력해주세요.");
             }
-        }
-    }
-
-    private void reboot() {
-        try (final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FILE_PATH, false)))) {
-            for (final Contact contact : list) {
-                bw.write(contact.toForm() + "\n");
-            }
-
-            bw.flush();
-        } catch (final IOException e) {
-            throw new RuntimeException(e);
         }
     }
 

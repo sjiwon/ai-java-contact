@@ -4,9 +4,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
 public interface Constants {
-    String PROJECT_PATH = System.getProperty("user.dir") + "\\src\\main\\java\\com\\sjiwon\\contact";
-    String FILE_PATH = PROJECT_PATH + "\\consolefile\\store\\phone.txt";
-
     /**
      * xxx-xxx-xxxx or xxx-xxxx-xxxx
      */

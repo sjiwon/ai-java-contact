@@ -10,7 +10,6 @@ import com.sjiwon.contact.domain.Contact;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
@@ -101,7 +100,7 @@ public class ContactConsoleProcessor {
             return;
         }
 
-        final Contact contact = new Contact(name, Integer.parseInt(age), phone, LocalDateTime.now());
+        final Contact contact = new Contact(name, Integer.parseInt(age), phone);
         register(contact);
 
         System.out.println();
