@@ -27,7 +27,7 @@ out/
 !**/src/test/**/out/
 
 docker/
-src/main/**/store/
+src/main/**/common/file/
 
 ### NetBeans ###
 /nbproject/private/
