@@ -1,7 +1,0 @@
-bootJar.enabled = true
-jar.enabled = false
-
-dependencies {
-    implementation project(":contact-common")
-    implementation project(":contact-domain")
-}

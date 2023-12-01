@@ -1,9 +1,9 @@
 rootProject.name = 'contact'
 
 include(
-        "contact-common",
         "contact-domain",
-        "contact-console-file",
-        "contact-console-rdb",
-        "contact-gui-file-rdb"
+        "contact-file-interact",
+        "contact-execute:console-file",
+        "contact-execute:console-rdb",
+        "contact-execute:gui-file-rdb",
 )
