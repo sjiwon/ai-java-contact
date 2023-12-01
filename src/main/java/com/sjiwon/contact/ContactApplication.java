@@ -9,19 +9,6 @@
 //
 //@SpringBootApplication
 //public class ContactApplication {
-//    // Console + DB
-////    public static void main(final String[] args) {
-////        SpringApplication.run(ContactApplication.class, args);
-////    }
-////
-////    @Bean
-////    public ApplicationRunner applicationRunner(final ConfigurableApplicationContext context) {
-////        return args -> {
-////            final MainController controller = context.getBean(MainController.class);
-////            controller.run();
-////        };
-////    }
-//
 //    // GUI
 //    public static void main(final String[] args) {
 //        final ConfigurableApplicationContext context = createApplicationContext(args);

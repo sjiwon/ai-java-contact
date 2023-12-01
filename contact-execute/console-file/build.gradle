@@ -3,5 +3,5 @@ jar.enabled = false
 
 dependencies {
     implementation project(":contact-domain")
-    implementation project(":contact-file-interact")
+    implementation project(":contact-storage:file")
 }

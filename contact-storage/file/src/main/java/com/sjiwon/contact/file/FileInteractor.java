@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileInteractor {
-    private static final String PROJECT_PATH = System.getProperty("user.dir") + "\\contact-file-interact\\src\\main\\java\\com\\sjiwon\\contact";
+    private static final String PROJECT_PATH = System.getProperty("user.dir") + "\\contact-storage\\file\\src\\main\\java\\com\\sjiwon\\contact";
     private static final String PHONE_FILE_PATH_WITH_CONSOLE = PROJECT_PATH + "\\store\\console\\phone.txt";
     private static final String LAST_ID_FILE_PATH_WITH_CONSOLE = PROJECT_PATH + "\\store\\console\\lastId.txt";
     private static final String PHONE_FILE_PATH_WITH_GUI = PROJECT_PATH + "\\store\\gui\\phone.txt";

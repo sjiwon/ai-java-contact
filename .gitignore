@@ -27,7 +27,7 @@ out/
 !**/src/test/**/out/
 
 docker/
-**/contact-file-interact/src/main/**/store
+**/contact-storage/file/src/main/**/store
 
 ### NetBeans ###
 /nbproject/private/
