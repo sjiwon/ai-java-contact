@@ -77,7 +77,7 @@ public class ConsoleFileApplication {
         for (int i = 0; i < contacts.size(); i++) {
             final Contact contact = contacts.get(i);
             result.append(String.format(
-                    "%d:\t%s\t%d\t%s\t%s\n",
+                    "%-5d:\t%-5s\t%-3d\t%-13s\t%-20s\n",
                     (i + 1),
                     contact.name(),
                     contact.age(),
