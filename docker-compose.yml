@@ -1,8 +1,8 @@
 version: "3"
 services:
-  database: # mysql -u root -p -> 1234
+  console-rdb:
     image: mysql:8.0.33
-    container_name: database
+    container_name: console-rdb
     restart: always
     ports:
       - "13306:3306"
@@ -16,5 +16,24 @@ services:
       - --collation-server=utf8mb4_unicode_ci
       - --skip-character-set-client-handshake
     volumes:
-      - "./docker/mysql_data:/var/lib/mysql" # .idb = Table Data / .frm = Table Definition / ...
-      - "./src/main/resources/sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro" # Init Script
+      - "./docker/console_rdb/mysql_data:/var/lib/mysql"
+      - "./contact-common/src/main/resources/sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro"
+
+  console-gui:
+    image: mysql:8.0.33
+    container_name: console-gui
+    restart: always
+    ports:
+      - "23306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "1234"
+      MYSQL_DATABASE: "contact"
+      TZ: "Asia/Seoul"
+      LANG: "C.UTF_8"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+    volumes:
+      - "./docker/console_gui/mysql_data:/var/lib/mysql"
+      - "./contact-common/src/main/resources/sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro"
