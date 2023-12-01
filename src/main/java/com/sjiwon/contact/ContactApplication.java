@@ -1,6 +1,6 @@
 package com.sjiwon.contact;
 
-import com.sjiwon.contact.gui.controller.ContactMainController;
+import com.sjiwon.contact.execute.gui.controller.ContactMainController;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
