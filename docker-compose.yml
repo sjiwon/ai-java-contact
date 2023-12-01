@@ -17,7 +17,7 @@ services:
       - --skip-character-set-client-handshake
     volumes:
       - "./docker/console_rdb/mysql_data:/var/lib/mysql"
-      - "./contact-common/src/main/resources/sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro"
+      - "./contact-file-interact/src/main/resources/sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro"
 
   console-gui:
     image: mysql:8.0.33
@@ -36,4 +36,4 @@ services:
       - --skip-character-set-client-handshake
     volumes:
       - "./docker/console_gui/mysql_data:/var/lib/mysql"
-      - "./contact-common/src/main/resources/sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro"
+      - "./contact-file-interact/src/main/resources/sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro"
