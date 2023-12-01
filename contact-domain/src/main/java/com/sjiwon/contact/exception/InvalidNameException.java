@@ -1,4 +1,4 @@
-package com.sjiwon.contact.execute.consolefile.exception;
+package com.sjiwon.contact.exception;
 
 public class InvalidNameException extends RuntimeException {
     public InvalidNameException() {

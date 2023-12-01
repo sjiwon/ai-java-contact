@@ -1,4 +1,4 @@
-package com.sjiwon.contact.execute.consolefile.exception;
+package com.sjiwon.contact.exception;
 
 public class InvalidPhoneException extends RuntimeException {
     public InvalidPhoneException() {

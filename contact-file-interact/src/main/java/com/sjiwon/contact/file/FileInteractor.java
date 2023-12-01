@@ -50,9 +50,7 @@ public class FileInteractor {
             final File file = new File(phoneFilePath);
             if (!file.exists()) {
                 try {
-                    if (file.createNewFile()) {
-                        System.out.println(file.getAbsolutePath() + " created...");
-                    } else {
+                    if (!file.createNewFile()) {
                         throw new RuntimeException("file is not created...");
                     }
                 } catch (final IOException e) {
@@ -74,8 +72,6 @@ public class FileInteractor {
                         try (final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false)))) {
                             bw.write("0");
                             bw.flush();
-
-                            System.out.println(file.getAbsolutePath() + " created...");
                         } catch (final IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -121,9 +117,9 @@ public class FileInteractor {
         }
     }
 
-    public void updateLastId(final FileInteractType type, final Long id) {
+    public void updateLastId(final FileInteractType type, final Long lastId) {
         try (final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(getLastIdPath(type), false)))) {
-            bw.write(String.valueOf(id));
+            bw.write(String.valueOf(lastId + 1));
             bw.flush();
         } catch (final IOException e) {
             throw new RuntimeException(e);
