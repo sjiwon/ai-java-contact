@@ -32,13 +32,15 @@ public class FileInteractor {
     }
 
     public static FileInteractor getInstance() {
-        return SingletonHolder.INSTANCE;
+        final FileInteractor instance = SingletonHolder.INSTANCE;
+        instance.initialize();
+        return instance;
     }
 
     /**
      * 파일 없으면 세팅
      */
-    public void initialize() {
+    private void initialize() {
         final List<String> phoneFiles = List.of(
                 PHONE_FILE_PATH_WITH_CONSOLE,
                 PHONE_FILE_PATH_WITH_GUI
@@ -47,9 +49,15 @@ public class FileInteractor {
         for (final String phoneFilePath : phoneFiles) {
             final File file = new File(phoneFilePath);
             if (!file.exists()) {
-                System.out.println(file.getAbsolutePath() + " 존재 X");
-            } else {
-                System.out.println(file.getAbsolutePath() + " 존재 O");
+                try {
+                    if (file.createNewFile()) {
+                        System.out.println(file.getAbsolutePath() + " created...");
+                    } else {
+                        throw new RuntimeException("file is not created...");
+                    }
+                } catch (final IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
 
@@ -61,9 +69,20 @@ public class FileInteractor {
         for (final String lastIdFilePath : lastIdFile) {
             final File file = new File(lastIdFilePath);
             if (!file.exists()) {
-                System.out.println(file.getAbsolutePath() + " 존재 X");
-            } else {
-                System.out.println(file.getAbsolutePath() + " 존재 O");
+                try {
+                    if (file.createNewFile()) {
+                        try (final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false)))) {
+                            bw.write("0");
+                            bw.flush();
+
+                            System.out.println(file.getAbsolutePath() + " created...");
+                        } catch (final IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                } catch (final IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
@@ -104,7 +123,7 @@ public class FileInteractor {
 
     public void updateLastId(final FileInteractType type, final Long id) {
         try (final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(getLastIdPath(type), false)))) {
-            bw.write(id + "\n");
+            bw.write(String.valueOf(id));
             bw.flush();
         } catch (final IOException e) {
             throw new RuntimeException(e);
