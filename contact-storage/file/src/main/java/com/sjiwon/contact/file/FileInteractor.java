@@ -117,9 +117,9 @@ public class FileInteractor {
         }
     }
 
-    public void updateLastId(final FileInteractType type, final Long lastId) {
+    public void updateLastId(final FileInteractType type, final Long id) {
         try (final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(getLastIdPath(type), false)))) {
-            bw.write(String.valueOf(lastId + 1));
+            bw.write(String.valueOf(id));
             bw.flush();
         } catch (final IOException e) {
             throw new RuntimeException(e);

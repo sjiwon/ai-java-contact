@@ -8,10 +8,10 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class ConsoleRdbApplication {
+public class ContactConsoleRdbApplication {
     public static void main(final String[] args) {
         System.setProperty("RDB_PORT", "13306");
-        SpringApplication.run(ConsoleRdbApplication.class, args);
+        SpringApplication.run(ContactConsoleRdbApplication.class, args);
     }
 
     @Bean

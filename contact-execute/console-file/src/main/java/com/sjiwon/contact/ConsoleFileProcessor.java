@@ -197,7 +197,7 @@ public class ConsoleFileProcessor {
 
     private void register(final Contact contact, final long lastId) {
         fileInteractor.writeWithKeepAdd(FileInteractType.CONSOLE, contact);
-        fileInteractor.updateLastId(FileInteractType.CONSOLE, lastId);
+        fileInteractor.updateLastId(FileInteractType.CONSOLE, lastId + 1);
         init();
     }
 
