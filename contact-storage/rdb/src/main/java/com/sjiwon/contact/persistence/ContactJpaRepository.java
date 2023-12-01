@@ -1,4 +1,4 @@
-package com.sjiwon.contact.infrastructure;
+package com.sjiwon.contact.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

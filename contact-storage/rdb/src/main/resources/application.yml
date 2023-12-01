@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:23306/contact?autoReconnect=true&characterEncoding=utf8&serverTimeZone=Asia/Seoul
+    url: jdbc:mysql://localhost:${RDB_PORT}/contact?autoReconnect=true&characterEncoding=utf8&serverTimeZone=Asia/Seoul
     username: root
     password: 1234
 
@@ -14,4 +14,3 @@ spring:
         show_sql: true
         format_sql: false
         default_batch_fetch_size: 50
-

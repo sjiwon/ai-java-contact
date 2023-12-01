@@ -1,4 +1,4 @@
-package com.sjiwon.contact.infrastructure;
+package com.sjiwon.contact.persistence;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "contacts")
-public class ContactJpaEntity {
+class ContactJpaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
