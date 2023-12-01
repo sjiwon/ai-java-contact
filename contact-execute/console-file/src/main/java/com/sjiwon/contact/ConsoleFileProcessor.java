@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ConsoleFileApplication {
+public class ConsoleFileProcessor {
     private static final Scanner sc = new Scanner(System.in);
     private final FileInteractor fileInteractor = FileInteractor.getInstance();
     private List<Contact> list = new ArrayList<>();

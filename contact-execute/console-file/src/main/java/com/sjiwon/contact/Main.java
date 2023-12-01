@@ -2,7 +2,7 @@ package com.sjiwon.contact;
 
 public class Main {
     public static void main(final String[] args) {
-        final ConsoleFileApplication application = new ConsoleFileApplication();
+        final ConsoleFileProcessor application = new ConsoleFileProcessor();
         application.run();
     }
 }
