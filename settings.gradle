@@ -1,1 +1,9 @@
 rootProject.name = 'contact'
+
+include(
+        "contact-domain",
+        "contact-storage",
+        "contact-console-file",
+        "contact-console-rdb",
+        "contact-gui-file-rdb"
+)
