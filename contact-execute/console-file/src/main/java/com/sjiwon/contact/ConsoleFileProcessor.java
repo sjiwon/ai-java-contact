@@ -2,6 +2,7 @@ package com.sjiwon.contact;
 
 import com.sjiwon.contact.domain.Contact;
 import com.sjiwon.contact.domain.ContactValidator;
+import com.sjiwon.contact.domain.SearchType;
 import com.sjiwon.contact.exception.DuplicateResourceException;
 import com.sjiwon.contact.exception.InvalidAgeException;
 import com.sjiwon.contact.exception.InvalidDeleteOperationException;
@@ -20,10 +21,6 @@ public class ConsoleFileProcessor {
     private static final Scanner sc = new Scanner(System.in);
     private final FileInteractor fileInteractor = FileInteractor.getInstance();
     private List<Contact> list = new ArrayList<>();
-
-    private enum SearchType {
-        MIDDLE, END
-    }
 
     public void run() {
         init();

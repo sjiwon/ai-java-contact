@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class ConsoleRdbApplication {
     public static void main(final String[] args) {
+        System.setProperty("RDB_PORT", "13306");
         SpringApplication.run(ConsoleRdbApplication.class, args);
     }
 
