@@ -2,4 +2,4 @@
 
 1. Console + File
 2. Console + RDB
-3. GUI + Console + RDB + File
+3. Java Swing GUI + File + RDB
