@@ -27,7 +27,8 @@ out/
 !**/src/test/**/out/
 
 docker/
-**/contact-storage/file/src/main/**/store
+lastId.txt
+phone.txt
 
 ### NetBeans ###
 /nbproject/private/
