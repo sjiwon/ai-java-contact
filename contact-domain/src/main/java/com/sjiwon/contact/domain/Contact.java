@@ -2,7 +2,6 @@ package com.sjiwon.contact.domain;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.regex.Pattern;
 
 public record Contact(
         Long id,
@@ -11,11 +10,9 @@ public record Contact(
         String phone,
         LocalDateTime createdAt
 ) {
-    public static final String PHONE_DELIMITER = "-";
+    private static final String PHONE_DELIMITER = "-";
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분");
     public static final String FORM_DELIMITER = " ";
-    public static final Pattern PHONE_PATTERN = Pattern.compile("^\\d{3}-\\d{3,4}-\\d{4}$");
-    public static final Pattern NAME_PATTERN = Pattern.compile("^[가-힣a-zA-Z]*$");
-    public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분");
 
     /**
      * RDB Persist (with IDENTITY Strategy)

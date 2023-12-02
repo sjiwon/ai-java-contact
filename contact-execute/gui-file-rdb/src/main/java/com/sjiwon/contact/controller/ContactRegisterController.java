@@ -35,7 +35,7 @@ public class ContactRegisterController extends AbstractFrameController {
                 return;
             }
 
-            if (!ContactValidator.isValidNamePattern(name)) {
+            if (ContactValidator.isInvalidNamePattern(name)) {
                 JOptionPane.showMessageDialog(
                         null,
                         "이름 형식이 잘못되었습니다.",
@@ -45,7 +45,7 @@ public class ContactRegisterController extends AbstractFrameController {
                 return;
             }
 
-            if (!ContactValidator.isValidAge(age)) {
+            if (ContactValidator.isInvalidAge(age)) {
                 JOptionPane.showMessageDialog(
                         null,
                         "나이는 0보다 커야합니다.",
@@ -55,7 +55,7 @@ public class ContactRegisterController extends AbstractFrameController {
                 return;
             }
 
-            if (!ContactValidator.isValidPhonePattern(phone)) {
+            if (ContactValidator.isInvalidPhonePattern(phone)) {
                 JOptionPane.showMessageDialog(
                         null,
                         "전화번호는 xxx-xxx-xxxx 또는 xxx-xxxx-xxxx로 입력해주세요.",

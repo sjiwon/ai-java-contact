@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FileInteractor {
@@ -84,25 +83,19 @@ public class FileInteractor {
     }
 
     public List<Contact> read(final FileInteractType type) {
-        final List<Contact> list = new ArrayList<>();
-
         try (final BufferedReader phoneReader = new BufferedReader(new InputStreamReader(new FileInputStream(getPhoneFilePath(type))))) {
-            String line;
-            while ((line = phoneReader.readLine()) != null) {
-                final String[] token = line.split(Contact.FORM_DELIMITER);
-                list.add(new Contact(
-                        Long.valueOf(token[0]),
-                        token[1],
-                        Integer.parseInt(token[2]),
-                        token[3],
-                        LocalDateTime.parse(token[4])
-                ));
-            }
+            return phoneReader.lines()
+                    .map(line -> line.split(Contact.FORM_DELIMITER))
+                    .map(token -> new Contact(
+                            Long.valueOf(token[0]),
+                            token[1],
+                            Integer.parseInt(token[2]),
+                            token[3],
+                            LocalDateTime.parse(token[4])
+                    )).toList();
         } catch (final IOException e) {
             throw new RuntimeException(e);
         }
-
-        return list;
     }
 
     /**
@@ -128,8 +121,7 @@ public class FileInteractor {
 
     public void writeWithKeepAdd(final FileInteractType type, final Contact contact) {
         try (final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(getPhoneFilePath(type), true)))) {
-            final String text = contact.toForm();
-            bw.write(text + "\n");
+            bw.write(contact.toForm() + "\n");
             bw.flush();
         } catch (final IOException e) {
             throw new RuntimeException(e);

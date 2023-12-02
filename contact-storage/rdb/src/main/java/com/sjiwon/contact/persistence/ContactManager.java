@@ -14,23 +14,6 @@ class ContactManager implements ContactWriter, ContactReader {
     private final ContactJpaRepository contactJpaRepository;
 
     @Override
-    public Contact create(final Contact target) {
-        final ContactJpaEntity entity = contactJpaRepository.save(ContactMapper.toEntity(target));
-        return ContactMapper.toDomain(entity);
-    }
-
-    @Override
-    public Contact get(final Long id) {
-        final ContactJpaEntity entity = contactJpaRepository.findById(id).orElseThrow();
-        return ContactMapper.toDomain(entity);
-    }
-
-    @Override
-    public void delete(final Contact target) {
-        contactJpaRepository.delete(ContactMapper.toEntity(target));
-    }
-
-    @Override
     public List<Contact> findAll() {
         return contactJpaRepository.findAll()
                 .stream()
@@ -57,7 +40,24 @@ class ContactManager implements ContactWriter, ContactReader {
     }
 
     @Override
+    public Contact get(final Long id) {
+        final ContactJpaEntity entity = contactJpaRepository.findById(id).orElseThrow();
+        return ContactMapper.toDomain(entity);
+    }
+
+    @Override
     public boolean isPhoneUsedByOther(final String value) {
         return contactJpaRepository.existsByPhone(value);
+    }
+
+    @Override
+    public Contact create(final Contact target) {
+        final ContactJpaEntity entity = contactJpaRepository.save(ContactMapper.toEntity(target));
+        return ContactMapper.toDomain(entity);
+    }
+
+    @Override
+    public void delete(final Contact target) {
+        contactJpaRepository.delete(ContactMapper.toEntity(target));
     }
 }

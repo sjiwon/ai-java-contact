@@ -114,7 +114,7 @@ public class MainController {
                     return null;
                 }
 
-                if (!ContactValidator.isValidNamePattern(name)) {
+                if (ContactValidator.isInvalidNamePattern(name)) {
                     throw new InvalidNameException("이름 형식이 잘못되었습니다.");
                 }
 
@@ -135,7 +135,7 @@ public class MainController {
                     return null;
                 }
 
-                if (!ContactValidator.isValidAge(age)) {
+                if (ContactValidator.isInvalidAge(age)) {
                     throw new InvalidAgeException("나이는 0보다 커야합니다.");
                 }
 
@@ -158,7 +158,7 @@ public class MainController {
                     return null;
                 }
 
-                if (!ContactValidator.isValidPhonePattern(phone)) {
+                if (ContactValidator.isInvalidPhonePattern(phone)) {
                     throw new InvalidPhoneException("전화번호는 xxx-xxx-xxxx 또는 xxx-xxxx-xxxx로 입력해주세요.");
                 }
 
